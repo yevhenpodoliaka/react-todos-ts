@@ -1,9 +1,10 @@
 import { useState } from "react";
-import style from "./TodoEditer.module.css";
+
+import style from "./TodoEditor.module.css";
 interface Props {
   onSubmit: (value: string) => void;
 }
-export const TodoEditer = ({ onSubmit }: Props): JSX.Element => {
+export const TodoEditor = ({ onSubmit }: Props): JSX.Element => {
   const [value, setValue] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

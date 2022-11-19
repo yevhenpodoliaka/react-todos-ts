@@ -1,12 +1,22 @@
 import "./App.css";
 import { nanoid } from "nanoid";
-import { useState } from "react";
-import { TodoEditer } from "./TodoEditer/TodoEditer";
+import { useState, useEffect } from "react";
+import { TodoEditor } from "./TodoEditor/TodoEditor";
 import { TodoList } from "./TodoList/TodoList";
-import todos from "./todos.json";
+import { Todo } from "./type";
+
+const getInitialTodoState = () => {
+  const savedTodos = localStorage.getItem("todos");
+
+  return savedTodos ? JSON.parse(savedTodos) : [];
+};
 
 const App = () => {
-  const [todoList, setTodoList] = useState([...todos]);
+  const [todoList, setTodoList] = useState<Todo[]>(getInitialTodoState);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoList));
+  }, [todoList]);
 
   const addTodo = (text: string) => {
     const todo = {
@@ -36,12 +46,16 @@ const App = () => {
 
   return (
     <div className="App">
-      <TodoEditer onSubmit={addTodo} />
-      <TodoList
-        todos={todoList}
-        onDeleteTodo={deleteTodo}
-        toggleCompleted={completedTodo}
-      />
+      <TodoEditor onSubmit={addTodo} />
+      {todoList.length < 1 ? (
+        <p> Add your first TODO</p>
+      ) : (
+        <TodoList
+          todos={todoList}
+          onDeleteTodo={deleteTodo}
+          toggleCompleted={completedTodo}
+        />
+      )}
     </div>
   );
 };
