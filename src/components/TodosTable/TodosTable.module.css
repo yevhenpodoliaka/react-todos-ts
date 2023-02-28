@@ -1,12 +1,30 @@
-.table{
-margin: 25px auto;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
+.table {
+  margin: 25px auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
 }
-.row{
+.row {
+  padding: 8px;
+  outline: 1px solid black;
+  background-color: lightslategray;
+  display: flex;
+  align-items: center;
+}
+.row:nth-child(2n) {
+  background-color: gray;
+}
+.id {
+  width: 35px;
+  text-align: center;
+}
+.title {
+  width: 250px;
+  text-align: start;
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.description {
+  width: 350px;
+  text-align: start;
+  padding-left: 4px;
 }

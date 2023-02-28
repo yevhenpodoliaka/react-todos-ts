@@ -29,7 +29,7 @@ export const Modal = ({ children, onClose }: ModalProps) => {
 
   return createPortal(
     <div className={style.overlay} onClick={handleOverlayClick}>
-      <div className={style.modalCard}>{children}</div>
+      <div>{children}</div>
     </div>,
     modalEl
   );

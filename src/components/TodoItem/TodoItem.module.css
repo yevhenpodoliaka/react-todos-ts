@@ -1,33 +1,50 @@
 .card {
   position: relative;
+  width: 600px;
+  height: 480px;
+  overflow: auto;
   background-color: #f1f1f1;
   display: flex;
-  justify-content: space-between;
-  padding: 4px;
+  flex-direction: column;
+  padding: 15px;
   border-radius: 4px;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
 }
-.checkbox {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.text {
+.title {
+  margin: 0 auto;
+  width: 400px;
   word-break: break-all;
-  padding: 12px;
+  height: 75px;
+  overflow: auto;
 }
-.line_through {
-  text-decoration: line-through;
-  word-break: break-all;
-  padding: 12px;
+.descriptionTitle {
+  font-weight: bold;
 }
-.btnDelete {
+.status {
   position: absolute;
-  top: 0;
-  right: 0;
-  color:grey;
+  bottom: 65px;
+  left: 25px;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 12px;
 }
-.btnDelete:hover{
-    color:black;
+
+.description {
+  word-break: break-all;
+  height: 250px;
+  overflow: auto;
+}
+
+.btnClose {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  padding: 8px;
+  color: black;
+  background-color: grey;
+}
+.btnClose:hover {
+  color: white;
+  background-color: black;
 }

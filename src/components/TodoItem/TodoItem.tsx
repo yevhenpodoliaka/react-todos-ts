@@ -1,37 +1,40 @@
+import { useState } from "react";
+import { ITodo } from "../../interfaces";
 import style from "./TodoItem.module.css";
-import { TiTrash } from "react-icons/ti";
+
 interface Props {
-  title: string;
-  description: string;
-  completed: boolean;
-  toggleCompleted: () => void;
-  onDeleteTodo: () => void;
+  todo: ITodo;
+  toggleCompleted: (id: number) => void;
+  onClose: () => void;
 }
+
 export const TodoItem = ({
-  title,
-  description,
-  completed,
+  todo: { title, completed, description, id },
   toggleCompleted,
-  onDeleteTodo,
-}: Props): JSX.Element => {
+  onClose,
+}: Props) => {
+  const [completedValue, setCompletedValue] = useState<boolean>(completed);
+
   return (
-    <li className={style.card}>
-      <input
-        type="checkbox"
-        className={style.checkbox}
-        checked={completed}
-        onChange={toggleCompleted}
-      />
-      {/* <p className={completed ? style.line_through : style.text}>{text}</p> */}
-      <p>{title }</p>
-      <p>{description }</p>
-      <button
-        className={style.btnDelete}
-        onClick={onDeleteTodo}
-        aria-label="delete todo"
-      >
-        <TiTrash fontSize={24} />
+    <div className={style.card}>
+      <h2 className={style.title}>{title}</h2>
+      <p className={style.descriptionTitle}>Description :</p>
+      <p className={style.description}>{description}</p>
+      <label className={style.status}>
+        Status
+        <input
+          type="checkbox"
+          checked={completedValue}
+          onChange={() => {
+            toggleCompleted(id);
+            setCompletedValue(!completedValue);
+          }}
+        />
+      </label>
+
+      <button className={style.btnClose} onClick={onClose}>
+        close
       </button>
-    </li>
+    </div>
   );
 };
