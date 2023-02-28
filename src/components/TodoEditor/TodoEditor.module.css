@@ -22,7 +22,7 @@ label{
 .input {
   font: inherit;
   font-size: 18px;
-  border: none;
+border-color: transparent;
   outline: none;
   padding-left:0 4px;
   background-color: #fff;
@@ -50,5 +50,6 @@ label{
 
 .btnCreate:hover {
   opacity: 1;
+
 }
 

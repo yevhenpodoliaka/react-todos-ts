@@ -1,0 +1,12 @@
+.table{
+margin: 25px auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+.row{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

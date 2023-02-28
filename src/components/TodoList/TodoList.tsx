@@ -1,10 +1,10 @@
 import style from "./TodoList.module.css";
 import { TodoItem } from "../TodoItem/TodoItem";
-import { ITodo } from "../interfaces";
+import { ITodo } from "../../interfaces";
 interface Props {
   todos: ITodo[];
-  toggleCompleted: (id: string) => void;
-  onDeleteTodo: (id: string) => void;
+  toggleCompleted: (id: number) => void;
+  onDeleteTodo: (id: number) => void;
 }
 
 export const TodoList = ({
@@ -13,7 +13,7 @@ export const TodoList = ({
   toggleCompleted,
 }: Props): JSX.Element => {
   return (
-    <ul className={style.grid}>
+    <ul className={style.table}>
       {todos.map(({ id, title,description, completed }) => (
         <TodoItem
           key={id}

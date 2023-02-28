@@ -1,8 +1,7 @@
-import "./App.css";
-import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
-import { TodoEditor } from "./TodoEditor/TodoEditor";
-import { TodoList } from "./TodoList/TodoList";
+import { TodoEditor } from "./components/TodoEditor/TodoEditor";
+import { TodosTable } from "./components/TodosTable/TodosTable";
+import { Modal } from "./components/Modal/Modal";
 import { ITodo } from "./interfaces";
 
 const getInitialTodoState = () => {
@@ -19,18 +18,15 @@ const App = () => {
 
   const addTodo = (title:string,description:string) => {
     const todo = {
-      id: nanoid(),
+      id:todoList.length +1,
       title,
       description,
       completed: false,
     };
-    setTodoList((prevTodos) => [todo, ...prevTodos]);
-  };
-  const deleteTodo = (todoId: string) => {
-    setTodoList((prevState) => prevState.filter((todo) => todo.id !== todoId));
+    setTodoList((prevTodos) => [ ...prevTodos,todo]);
   };
 
-  const completedTodo = (todoId: string) => {
+  const completedTodo = (todoId: number) => {
     setTodoList((prevState) =>
       prevState.map((todo) => {
         if (todo.id === todoId) {
@@ -50,12 +46,12 @@ const App = () => {
       {todoList.length < 1 ? (
         <p> Add your first TODO</p>
       ) : (
-        <TodoList
+        <TodosTable
           todos={todoList}
-          onDeleteTodo={deleteTodo}
           toggleCompleted={completedTodo}
         />
       )}
+      {/* <Modal /> */}
     </div>
   );
 };
