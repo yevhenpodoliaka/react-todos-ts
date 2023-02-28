@@ -3,7 +3,7 @@ import style from "./TodoEditor.module.css";
 interface Props {
   onSubmit: (title: string, description: string) => void;
 }
-export const TodoEditor = ({ onSubmit }: Props): JSX.Element => {
+export const TodoEditor = ({ onSubmit }: Props) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [titleError, setTitleError] = useState(false);
@@ -24,22 +24,22 @@ export const TodoEditor = ({ onSubmit }: Props): JSX.Element => {
     }
   };
 
-  const handleSubmit = (e: React.SyntheticEvent): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!title && !description) {
       setTitleError(true);
       setDescriptionError(true);
-      alert("This field is empty");
+      alert("All fields must be filled");
       return;
     }
     if (!title) {
       setTitleError(true);
-      alert("This field is empty");
+      alert("All fields must be filled");
       return;
     }
     if (!description) {
       setDescriptionError(true);
-      alert("This field is empty");
+      alert("All fields must be filled");
       return;
     }
     onSubmit(title, description);
@@ -61,7 +61,7 @@ export const TodoEditor = ({ onSubmit }: Props): JSX.Element => {
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="add title"
+            placeholder={titleError?"This field is empty": "add title"}
           />
         </label>
         <label>
@@ -77,7 +77,7 @@ export const TodoEditor = ({ onSubmit }: Props): JSX.Element => {
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="add description ..."
+             placeholder={descriptionError?"This field is empty": "add title"}
           />
         </label>
         <button className={style.btnCreate} type="submit">
