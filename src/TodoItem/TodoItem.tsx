@@ -1,13 +1,15 @@
 import style from "./TodoItem.module.css";
 import { TiTrash } from "react-icons/ti";
 interface Props {
-  text: string;
+  title: string;
+  description: string;
   completed: boolean;
   toggleCompleted: () => void;
   onDeleteTodo: () => void;
 }
 export const TodoItem = ({
-  text,
+  title,
+  description,
   completed,
   toggleCompleted,
   onDeleteTodo,
@@ -20,7 +22,9 @@ export const TodoItem = ({
         checked={completed}
         onChange={toggleCompleted}
       />
-      <p className={completed ? style.line_through : style.text}>{text}</p>
+      {/* <p className={completed ? style.line_through : style.text}>{text}</p> */}
+      <p>{title }</p>
+      <p>{description }</p>
       <button
         className={style.btnDelete}
         onClick={onDeleteTodo}

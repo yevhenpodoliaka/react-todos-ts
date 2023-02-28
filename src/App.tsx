@@ -3,25 +3,25 @@ import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
 import { TodoEditor } from "./TodoEditor/TodoEditor";
 import { TodoList } from "./TodoList/TodoList";
-import { Todo } from "./type";
+import { ITodo } from "./interfaces";
 
 const getInitialTodoState = () => {
   const savedTodos = localStorage.getItem("todos");
-
   return savedTodos ? JSON.parse(savedTodos) : [];
 };
 
 const App = () => {
-  const [todoList, setTodoList] = useState<Todo[]>(getInitialTodoState);
+  const [todoList, setTodoList] = useState<ITodo[]>(getInitialTodoState);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todoList));
   }, [todoList]);
 
-  const addTodo = (text: string) => {
+  const addTodo = (title:string,description:string) => {
     const todo = {
       id: nanoid(),
-      text,
+      title,
+      description,
       completed: false,
     };
     setTodoList((prevTodos) => [todo, ...prevTodos]);
