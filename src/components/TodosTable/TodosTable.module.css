@@ -1,8 +1,18 @@
+.tableHeader {
+  display: flex;
+  margin: 25px auto 0;
+  max-width: 600px;
+  background-color: darkgray;
+  color: white;
+  padding: 4px;
+  outline: 1px solid black;
+}
 .table {
-  margin: 25px auto;
+  margin: 0 auto;
   max-width: 600px;
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 .row {
   padding: 8px;
